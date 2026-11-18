@@ -1,0 +1,10 @@
+{% extends 'pharmacy/base.html' %}
+{% block content %}
+<h1>Форма сотрудника</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Сохранить</button>
+    <a href="{% url 'employee_list' %}" class="btn btn-danger">Отмена</a>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'pharmacy/base.html' %}
+{% block content %}
+<h1>Список сотрудников</h1>
+<a href="{% url 'employee_add' %}" class="btn">+ Добавить сотрудника</a>
+<hr>
+{% for item in items %}
+    <div class="item-row">
+        <div>
+            <h3><a href="{% url 'employee_detail' item.pk %}">{{ item.last_name }} {{ item.first_name }}</a></h3>
+            <p>Должность: {{ item.position }}</p>
+            <div class="actions">
+                <a href="{% url 'employee_edit' item.pk %}" class="btn btn-edit">Изменить</a>
+                <a href="{% url 'employee_delete' item.pk %}" class="btn btn-danger">Удалить</a>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <p>Сотрудников пока нет.</p>
+{% endfor %}
+{% endblock %}

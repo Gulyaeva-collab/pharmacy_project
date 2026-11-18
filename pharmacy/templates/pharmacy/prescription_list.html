@@ -1,0 +1,20 @@
+{% extends 'pharmacy/base.html' %}
+{% block content %}
+<h1>Список рецептов</h1>
+<a href="{% url 'prescription_add' %}" class="btn">+ Добавить рецепт</a>
+<hr>
+{% for item in items %}
+    <div class="item-row">
+        <div>
+            <h3><a href="{% url 'prescription_detail' item.pk %}">Рецепт №{{ item.number }}</a></h3>
+            <p>Пациент: {{ item.patient_name }}</p>
+            <div class="actions">
+                <a href="{% url 'prescription_edit' item.pk %}" class="btn btn-edit">Изменить</a>
+                <a href="{% url 'prescription_delete' item.pk %}" class="btn btn-danger">Удалить</a>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <p>Рецептов пока нет.</p>
+{% endfor %}
+{% endblock %}

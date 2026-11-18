@@ -1,0 +1,20 @@
+{% extends 'pharmacy/base.html' %}
+{% block content %}
+<h1>Список заказов</h1>
+<a href="{% url 'order_add' %}" class="btn">+ Создать заказ</a>
+<hr>
+{% for item in items %}
+    <div class="item-row">
+        <div>
+            <h3><a href="{% url 'order_detail' item.pk %}">Заказ #{{ item.pk }} — {{ item.medicine.name }}</a></h3>
+            <p>Статус: {{ item.get_status_display }}</p>
+            <div class="actions">
+                <a href="{% url 'order_edit' item.pk %}" class="btn btn-edit">Изменить</a>
+                <a href="{% url 'order_delete' item.pk %}" class="btn btn-danger">Удалить</a>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <p>Заказов пока нет.</p>
+{% endfor %}
+{% endblock %}

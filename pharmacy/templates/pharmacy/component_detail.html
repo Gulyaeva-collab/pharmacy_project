@@ -1,0 +1,14 @@
+{% extends 'pharmacy/base.html' %}
+{% block content %}
+<h1>{{ item.name }}</h1>
+{% if item.photo %}
+    <img src="{{ item.photo.url }}" width="300" alt="{{ item.name }}">
+{% endif %}
+<p><b>Поставщик:</b> {% if item.supplier %}{{ item.supplier.name }}{% else %}—{% endif %}</p>
+<p><b>Цена:</b> {{ item.price }} руб. за {{ item.unit }}</p>
+<div class="actions">
+    <a href="{% url 'component_edit' item.pk %}" class="btn btn-edit">Изменить</a>
+    <a href="{% url 'component_delete' item.pk %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'component_list' %}" class="btn">Назад к списку</a>
+</div>
+{% endblock %}

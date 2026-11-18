@@ -1,0 +1,10 @@
+{% extends 'pharmacy/base.html' %}
+{% block content %}
+<h1>{{ item.last_name }} {{ item.first_name }}</h1>
+<p><b>Должность:</b> {{ item.position }}</p>
+<div class="actions">
+    <a href="{% url 'employee_edit' item.pk %}" class="btn btn-edit">Изменить</a>
+    <a href="{% url 'employee_delete' item.pk %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'employee_list' %}" class="btn">Назад к списку</a>
+</div>
+{% endblock %}
